@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+        <title> hi</title>
+        <style>
+            body{
+                background-color: #EED426;
+            }
+h1{
+    color: #006666;
+    font-family: verdana;
+    text-align: center;
+}
+#t{
+    float: right;
+    width:70%;
+}
+
+#rentalcost {
+    text-align: center;
+    float: right;
+    border: 1px solid; 
+}
+.r{
+    border: 1px solid; 
+}
+
+</style>
+   
+  </head>
+  <body> 
+      <h1>ACTB Connection Portal</h1>
+      <table id="t" onsubmit="return bill()">
+     <tr>
+     <td>
+     <label >Customer Name</label></td>
+     <td>
+     <input type="text" name="custname" placeholder="Enter the customer name" pattern="[A-Z a-z]+" title="Enter only alphabets and spaces"  required>
+    </td>
+    </tr>
+
+     <tr>
+        <td>
+     <label >Customer Email</label>
+     </td>
+     <td><input type="email" name="email" placeholder="abc@gmail.com" required></td></tr>
+    <tr>
+        <td>
+     <label >Telephone/Mobile Number</label></td><td>
+     <input type="text" name="mobile" placeholder="Enter the Mobile Number" pattern="[7-9]{1}[0-9]{9}" title="Phone number with 7-9 and remaing 9 digit with 0-9 "  required></td>
+     
+    </tr>
+    <tr>
+        <td>
+     <label >Connection Type</label> 
+    </td> 
+    <td>
+        <select name="conntype" id="connectiontype" required>
+        <option id="Pre" value="Pre">Pre</option>
+        <option id="Post" value="Post">Post</option>
+        </select>
+</td>
+    </tr>
+    <tr>
+        <td>
+        <label >Scheme Name</label></td>
+<td>
+        <input type="radio" name="scheme" id="scheme1" >
+        <label >Local</label>
+        <input type="radio" name="scheme" id="scheme2">
+        <label >STD</label>
+        <input type="radio" name="scheme" id="scheme3">
+        <label >FullTalk Time</label>
+    </td>
+    </tr>
+        <tr>
+            <td>
+        <label >Connection Duration</label></td>
+        <td>
+     <input type="number" name="duration" id="duration" min="1" max="12" required></td>
+    
+    </tr>
+    <tr><td>
+     <input type="submit" name="submit" value="Connection Bill Amount" onclick="bill()"></td>
+     <td>
+     <input type="reset" name="clear" onclick=""></td>
+    </tr>
+    <tr>
+    <td >
+     <div name="result" id="result"></div>
+    </td>
+</tr>
+</table>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<table id="rentalcost" >
+    <caption>Rental Cost Table</caption>
+    <tr>
+        <th class="r">Connection Type</th>
+        <th class="r">Call Limit</th>
+        <th class="r">Monthly Rental</th>
+    </tr>
+    <tr >
+        <td class="r">Pre</td>
+        <td class="r">500</td>
+        <td class="r">75</td>
+    </tr>
+    <tr>
+        <td class="r">Post</td>
+        <td class="r">Unlimited</td>
+        <td class="r">150</td>
+    </tr>
+</table>
+
+
+    <script >
+function bill()
+{     
+    var dur=document.getElementById("duration").value; 
+    var total=0;
+    var s=document.getElementById("connectiontype");
+    if((document.getElementById("scheme1").checked) && (s.value=="Pre"))
+    {
+         total=(dur*200)+75;
+    }
+    else if ((document.getElementById("scheme2").checked)  && (s.value=="Pre"))
+    {
+         total=(dur*350)+75;
+    }
+    else if ((document.getElementById("scheme3").checked ) && (s.value=="Pre"))
+    {
+         total=(dur*500)+75;
+    }
+    else if((document.getElementById("scheme1").checked) && (s.value=="Post"))
+    {
+         total=(dur*200)+150;
+    }
+    else if ((document.getElementById("scheme2").checked)  && (s.value=="Post"))
+    {
+         total=(dur*350)+150;
+    }
+    else if ((document.getElementById("scheme3").checked ) && (s.value=="Post"))
+    {
+         total=(dur*500)+150;
+    }
+    
+    document.getElementById("result").innerHTML = "The Total Monthly Rental Cost is Rs" + total;
+    return false;
+}
+    </script>
+  </body>
+</html>
